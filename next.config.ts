@@ -3,12 +3,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 
 const nextConfig: NextConfig = {
-   logging: {
-      fetches: {
-        fullUrl: process.env.NODE_ENV === 'development'
-      }
-    }
 };
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin({
+  requestConfig: './i18n/request.ts'
+});
 export default withNextIntl(nextConfig);

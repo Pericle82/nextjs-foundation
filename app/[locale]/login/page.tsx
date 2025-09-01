@@ -3,8 +3,14 @@ import LoginForm from '@/app/ui/login-form';
 import { auth } from '@/auth';
 import { redirect } from 'next/dist/client/components/navigation';
 import { Suspense } from 'react';
+import { setRequestLocale } from 'next-intl/server';
 
-export default async function LoginPage() {
+export default async function LoginPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  
+  // Enable static rendering
+  setRequestLocale(locale);
+  
   const isLoggedIn = await auth();
   console.debug('User is logged in:', isLoggedIn);
   if (isLoggedIn) {

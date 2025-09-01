@@ -14,20 +14,21 @@ export const metadata: Metadata = {
 };
 
 export default async function Page(props: {
-  locale: string;
+  params: Promise<{ locale: string }>;
   searchParams?: Promise<{
     query?: string;
     page?: string;
   }>;
 }) {
+  const params = await props.params;
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
   const totalPages = await fetchInvoicesPages(query);
 
-    // Enable static rendering
-  setRequestLocale(props.locale);
+  // Enable static rendering
+  setRequestLocale(params.locale);
   const t = await getTranslations('invoices');
 
   return (

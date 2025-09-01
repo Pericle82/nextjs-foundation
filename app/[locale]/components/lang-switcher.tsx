@@ -1,19 +1,19 @@
 'use client';
 
-import Link from "next/link";
-import { Locale, useLocale, useTranslations } from "next-intl";
-import { ChangeEvent, ComponentProps, useTransition } from "react";
 import { cn } from "@/app/lib/utils";
 import { Button, buttonVariants } from "@/app/ui/button";
 import { usePathname, useRouter } from '@/i18n/navigation';
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import { useParams } from "next/navigation";
+import { ComponentProps, useTransition } from "react";
 
 
 type LangSwitcherProps = {
   className?: ComponentProps<typeof Link>["className"];
 };
 
-export const LangSwitcher = ({ className }: LangSwitcherProps) => {
+export default function LangSwitcher({ className }: LangSwitcherProps) {
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations('ui');
@@ -35,7 +35,6 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
       );
     });
   }
-
 
   return (
     <Button

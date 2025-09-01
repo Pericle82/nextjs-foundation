@@ -2,7 +2,7 @@ import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from './components/theme-provider';
-import { LangSwitcher } from './components/lang-switcher';
+import  LangSwitcher from './components/lang-switcher';
 import { ThemeSwitcher } from './components/theme-switcher';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
@@ -11,18 +11,21 @@ import { setRequestLocale } from 'next-intl/server';
 
 export { metadata };
 
-const RootLayout = async ({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}) => {
+}) {
   const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  // Enable static rendering
+  setRequestLocale(locale);
 
   return (
     <html lang={locale}>
@@ -41,4 +44,3 @@ const RootLayout = async ({
   );
 }
 
-export default RootLayout;

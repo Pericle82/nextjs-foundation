@@ -2,13 +2,18 @@ import { fetchCustomers } from '@/app/lib/data';
 import Form from '@/app/ui/invoices/create-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Create Invoice',
 };
 
-export default async function Page() {
+export default async function Page({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  
+  // Enable static rendering
+  setRequestLocale(locale);
+  
   const customers = await fetchCustomers();
   const t = await getTranslations('invoices.breadcrumbs');
 
