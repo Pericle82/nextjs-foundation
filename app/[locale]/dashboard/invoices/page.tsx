@@ -4,16 +4,17 @@ import Table from '@/app/ui/invoices/table';
 import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
-import { Suspense } from 'react';
+import { Suspense, use } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Invoices',
 };
 
 export default async function Page(props: {
+  locale: string;
   searchParams?: Promise<{
     query?: string;
     page?: string;
@@ -24,6 +25,9 @@ export default async function Page(props: {
   const currentPage = Number(searchParams?.page) || 1;
 
   const totalPages = await fetchInvoicesPages(query);
+
+    // Enable static rendering
+  setRequestLocale(props.locale);
   const t = await getTranslations('invoices');
 
   return (

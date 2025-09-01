@@ -7,6 +7,7 @@ import { ThemeSwitcher } from './components/theme-switcher';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { metadata } from './_site_metadata';
+import { setRequestLocale } from 'next-intl/server';
 
 export { metadata };
 
@@ -18,8 +19,6 @@ const RootLayout = async ({
   params: Promise<{ locale: string }>;
 }) => {
   const { locale } = await params;
-
-  console.debug('Current locale:', locale);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
