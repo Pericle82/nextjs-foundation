@@ -2,11 +2,9 @@ import { Revenue } from './definitions';
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export const formatCurrency = (amount: number, locale: string = 'en-US') => {
+export const formatCurrency = (amount: number, locale: string = 'en') => {
   const currencyMap = {
-    'en-US': 'USD',
     'en': 'USD',
-    'it-IT': 'EUR',
     'it': 'EUR',
   } as const;
 
@@ -31,8 +29,8 @@ export const formatDateToLocal = (
   };
   
   // Map short locales to full locales
-  const formatLocale = locale === 'it' ? 'it-IT' : 
-                      locale === 'en' ? 'en-US' : locale;
+  const formatLocale = locale === 'it' ? 'it' : 
+                      locale === 'en' ? 'en' : locale;
   
   const formatter = new Intl.DateTimeFormat(formatLocale, options);
   return formatter.format(date);
