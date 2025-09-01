@@ -1,0 +1,82 @@
+{
+  "ui": {
+    "switchLanguage": "Switch to Italian"
+  },
+  "navigation": {
+    "home": "Home",
+    "invoices": "Invoices",
+    "customers": "Customers"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "cards": {
+      "collected": "Collected",
+      "pending": "Pending",
+      "totalInvoices": "Total Invoices",
+      "totalCustomers": "Total Customers"
+    },
+    "latestInvoices": "Latest Invoices",
+    "updatedJustNow": "Updated just now",
+    "revenueChart": "Recent Revenue",
+    "lastTwelveMonths": "Last 12 months",
+    "noDataAvailable": "No data available."
+  },
+  "customers": {
+    "title": "Customers",
+    "searchPlaceholder": "Search customers...",
+    "tableHeaders": {
+      "name": "Name",
+      "email": "Email",
+      "totalInvoices": "Total Invoices",
+      "totalPending": "Total Pending",
+      "totalPaid": "Total Paid"
+    },
+    "invoicesCount": "invoices",
+    "pending": "Pending",
+    "paid": "Paid"
+  },
+  "invoices": {
+    "title": "Invoices",
+    "searchPlaceholder": "Search invoices...",
+    "createInvoice": "Create Invoice",
+    "tableHeaders": {
+      "customer": "Customer",
+      "email": "Email",
+      "amount": "Amount",
+      "date": "Date",
+      "status": "Status",
+      "edit": "Edit"
+    },
+    "form": {
+      "chooseCustomer": "Choose customer",
+      "selectCustomer": "Select a customer",
+      "chooseAmount": "Choose an amount",
+      "amountPlaceholder": "Enter USD amount",
+      "setStatus": "Set the invoice status",
+      "pending": "Pending",
+      "paid": "Paid",
+      "cancel": "Cancel",
+      "createInvoice": "Create Invoice",
+      "editInvoice": "Edit Invoice"
+    },
+    "breadcrumbs": {
+      "invoices": "Invoices",
+      "createInvoice": "Create Invoice",
+      "editInvoice": "Edit Invoice"
+    },
+    "buttons": {
+      "delete": "Delete"
+    }
+  },
+  "auth": {
+    "pleaseLogIn": "Please log in to continue.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "logIn": "Log in"
+  },
+  "common": {
+    "search": "Search"
+  }
+}

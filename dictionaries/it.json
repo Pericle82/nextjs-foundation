@@ -1,0 +1,82 @@
+{
+  "ui": {
+    "switchLanguage": "Passa all'inglese"
+  },
+  "navigation": {
+    "home": "Home",
+    "invoices": "Fatture",
+    "customers": "Clienti"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "cards": {
+      "collected": "Raccolti",
+      "pending": "In Sospeso",
+      "totalInvoices": "Totale Fatture",
+      "totalCustomers": "Totale Clienti"
+    },
+    "latestInvoices": "Ultime Fatture",
+    "updatedJustNow": "Aggiornato ora",
+    "revenueChart": "Entrate Recenti",
+    "lastTwelveMonths": "Ultimi 12 mesi",
+    "noDataAvailable": "Nessun dato disponibile."
+  },
+  "customers": {
+    "title": "Clienti",
+    "searchPlaceholder": "Cerca clienti...",
+    "tableHeaders": {
+      "name": "Nome",
+      "email": "Email",
+      "totalInvoices": "Totale Fatture",
+      "totalPending": "Totale in Sospeso",
+      "totalPaid": "Totale Pagati"
+    },
+    "invoicesCount": "fatture",
+    "pending": "In Sospeso",
+    "paid": "Pagati"
+  },
+  "invoices": {
+    "title": "Fatture",
+    "searchPlaceholder": "Cerca fatture...",
+    "createInvoice": "Crea Fattura",
+    "tableHeaders": {
+      "customer": "Cliente",
+      "email": "Email",
+      "amount": "Importo",
+      "date": "Data",
+      "status": "Stato",
+      "edit": "Modifica"
+    },
+    "form": {
+      "chooseCustomer": "Scegli cliente",
+      "selectCustomer": "Seleziona un cliente",
+      "chooseAmount": "Scegli un importo",
+      "amountPlaceholder": "Inserisci importo USD",
+      "setStatus": "Imposta lo stato della fattura",
+      "pending": "In Sospeso",
+      "paid": "Pagata",
+      "cancel": "Annulla",
+      "createInvoice": "Crea Fattura",
+      "editInvoice": "Modifica Fattura"
+    },
+    "breadcrumbs": {
+      "invoices": "Fatture",
+      "createInvoice": "Crea Fattura",
+      "editInvoice": "Modifica Fattura"
+    },
+    "buttons": {
+      "delete": "Elimina"
+    }
+  },
+  "auth": {
+    "pleaseLogIn": "Effettua il login per continuare.",
+    "email": "Email",
+    "emailPlaceholder": "Inserisci il tuo indirizzo email",
+    "password": "Password",
+    "passwordPlaceholder": "Inserisci password",
+    "logIn": "Accedi"
+  },
+  "common": {
+    "search": "Cerca"
+  }
+}
