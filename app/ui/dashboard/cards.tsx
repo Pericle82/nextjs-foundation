@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchCardData } from '@/app/lib/data';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 const iconMap = {
   collected: BanknotesIcon,
@@ -24,17 +24,22 @@ export default async function CardWrapper() {
   } = await fetchCardData();
   
   const t = await getTranslations('dashboard.cards');
+      const locale = await getLocale();
+
+  const formatCurrency = (amount: number) => {
+    const currency = locale.startsWith('it') ? 'EUR' : 'USD';
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    }).format(amount / 100);
+  };
 
   return (
     <>
-      <Card title={t('collected')} value={totalPaidInvoices} type="collected" />
-      <Card title={t('pending')} value={totalPendingInvoices} type="pending" />
+      <Card title={t('collected')} value={formatCurrency(totalPaidInvoices)} type="collected" />
+      <Card title={t('pending')} value={formatCurrency(totalPendingInvoices)} type="pending" />
       <Card title={t('totalInvoices')} value={numberOfInvoices} type="invoices" />
-      <Card
-        title={t('totalCustomers')}
-        value={numberOfCustomers}
-        type="customers"
-      />
+      <Card title={t('totalCustomers')} value={numberOfCustomers} type="customers" />
     </>
   );
 }

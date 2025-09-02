@@ -62,7 +62,7 @@ export async function fetchLatestInvoices() {
 
     const latestInvoices = data.map((invoice) => ({
       ...invoice,
-      amount: formatCurrency(invoice.amount),
+      amount: invoice.amount / 100, // Convert amount from cents to dollars
     }));
     return latestInvoices;
   } catch (error) {
@@ -85,18 +85,25 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
-    console.log('fetchCardData: Waiting for queries...');
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
       invoiceStatusPromise,
     ]);
-    console.log('fetchCardData: Queries completed successfully');
+    console.log('fetchCardData: Queries completed successfully', data);
 
-    const numberOfInvoices = Number(data[0].count ?? '0');
-    const numberOfCustomers = Number(data[1].count ?? '0');
-    const totalPaidInvoices = formatCurrency(data[2][0].paid ?? '0');
-    const totalPendingInvoices = formatCurrency(data[2][0].pending ?? '0');
+    // Fix: access the first element of each result array
+    const numberOfInvoices = Number(data[0][0]?.count ?? '0');
+    const numberOfCustomers = Number(data[1][0]?.count ?? '0');
+    const totalPaidInvoices = data[2][0]?.paid ?? '0';
+    const totalPendingInvoices = data[2][0]?.pending ?? '0';
+
+    console.log('Card Data:', {
+      numberOfCustomers,
+      numberOfInvoices,
+      totalPaidInvoices,
+      totalPendingInvoices,
+    });
 
     return {
       numberOfCustomers,
@@ -238,8 +245,8 @@ export async function fetchFilteredCustomers(query: string) {
 
     const customers = data.map((customer) => ({
       ...customer,
-      total_pending: formatCurrency(customer.total_pending),
-      total_paid: formatCurrency(customer.total_paid),
+      total_pending: customer.total_pending,
+      total_paid: customer.total_paid,
     }));
 
     return customers;

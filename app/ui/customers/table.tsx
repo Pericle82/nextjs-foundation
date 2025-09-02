@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
 import Search from '@/app/ui/search';
 import { FormattedCustomersTable } from '@/app/lib/definitions';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export default async function CustomersTable({
   customers,
@@ -10,6 +10,20 @@ export default async function CustomersTable({
   customers: FormattedCustomersTable[];
 }) {
   const t = await getTranslations('customers');
+    const locale = await getLocale();
+
+  const formatCurrency = (amount: number) => {
+    const currency = locale.startsWith('it') ? 'EUR' : 'USD';
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    }).format(amount / 100);
+  };
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat(locale).format(date);
+  };
   
   return (
     <div className="w-full">
@@ -49,11 +63,11 @@ export default async function CustomersTable({
                     <div className="flex w-full items-center justify-between border-b py-5">
                       <div className="flex w-1/2 flex-col">
                         <p className="text-xs">{t('pending')}</p>
-                        <p className="font-medium">{customer.total_pending}</p>
+                        <p className="font-medium">{formatCurrency(customer.total_pending)}</p>
                       </div>
                       <div className="flex w-1/2 flex-col">
                         <p className="text-xs">{t('paid')}</p>
-                        <p className="font-medium">{customer.total_paid}</p>
+                        <p className="font-medium">{formatCurrency(customer.total_paid)}</p>
                       </div>
                     </div>
                     <div className="pt-4 text-sm">
@@ -105,10 +119,10 @@ export default async function CustomersTable({
                         {customer.total_invoices}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {customer.total_pending}
+                        {formatCurrency(customer.total_pending)}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
-                        {customer.total_paid}
+                        {formatCurrency(customer.total_paid)}
                       </td>
                     </tr>
                   ))}

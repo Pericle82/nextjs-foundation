@@ -3,11 +3,25 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestInvoices } from '@/app/lib/data';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export default async function LatestInvoices() {
   const latestInvoices = await fetchLatestInvoices();
   const t = await getTranslations('dashboard');
+    const locale = await getLocale();
+
+  const formatCurrency = (amount: number) => {
+    const currency = locale.startsWith('it') ? 'EUR' : 'USD';
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    }).format(amount / 100);
+  };
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat(locale).format(date);
+  };
 
   return (
     <div className="flex w-full flex-col md:col-span-4">
@@ -47,7 +61,7 @@ export default async function LatestInvoices() {
                 <p
                   className={`${lusitana.className} truncate text-sm font-medium md:text-base`}
                 >
-                  {invoice.amount}
+                  {formatCurrency(invoice.amount)}
                 </p>
               </div>
             );

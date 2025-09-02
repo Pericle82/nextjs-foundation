@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from './components/theme-provider';
 import  LangSwitcher from './components/lang-switcher';
 import { ThemeSwitcher } from './components/theme-switcher';
+import ClientOnly from './components/client-only';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { metadata } from './_site_metadata';
@@ -28,14 +29,16 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
 
         <NextIntlClientProvider locale={locale}>
-          <ThemeProvider attribute="class">
+          <ThemeProvider>
             {children}
-            <LangSwitcher className="absolute right-5 bottom-16 z-10" />
-            <ThemeSwitcher className="absolute right-5 bottom-5 z-10" />
+            <ClientOnly>
+              <LangSwitcher className="absolute right-5 bottom-16 z-10" />
+              <ThemeSwitcher className="absolute right-5 bottom-5 z-10" />
+            </ClientOnly>
           </ThemeProvider>
         </NextIntlClientProvider>
 
