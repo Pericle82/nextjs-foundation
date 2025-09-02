@@ -22,7 +22,6 @@ const sql = postgres(process.env.POSTGRES_URL!, {
 export async function testDbConnection() {
   try {
     await sql`SELECT 1 as test`;
-    console.log('Database connection successful');
     return true;
   } catch (error) {
     console.error('Database connection failed:', error);
@@ -39,8 +38,6 @@ export async function fetchRevenue() {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
-
-    // console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
@@ -90,20 +87,12 @@ export async function fetchCardData() {
       customerCountPromise,
       invoiceStatusPromise,
     ]);
-    console.log('fetchCardData: Queries completed successfully', data);
 
     // Fix: access the first element of each result array
     const numberOfInvoices = Number(data[0][0]?.count ?? '0');
     const numberOfCustomers = Number(data[1][0]?.count ?? '0');
     const totalPaidInvoices = data[2][0]?.paid ?? '0';
     const totalPendingInvoices = data[2][0]?.pending ?? '0';
-
-    console.log('Card Data:', {
-      numberOfCustomers,
-      numberOfInvoices,
-      totalPaidInvoices,
-      totalPendingInvoices,
-    });
 
     return {
       numberOfCustomers,
