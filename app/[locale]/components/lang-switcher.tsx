@@ -49,9 +49,10 @@ export default function LangSwitcher({ className }: LangSwitcherProps) {
     return (
       <Button
         className={cn(
-          buttonVariants({ variant: "outline", size: "icon" }),
+          "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-lg text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700",
           className,
         )}
+        size="icon"
         disabled
       >
         {locale.toUpperCase()}
@@ -62,9 +63,10 @@ export default function LangSwitcher({ className }: LangSwitcherProps) {
   return (
     <Button
       className={cn(
-        buttonVariants({ variant: "outline", size: "icon" }),
+        "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-lg text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700",
         className,
       )}
+      size="icon"
       onClick={onSelectChange}
       title={t('switchLanguage', { locale: nextLocale })}
       disabled={isPending}

@@ -18,19 +18,19 @@ export default async function RevenueChart() {
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {
-    return <p className="mt-4 text-gray-400">{t('noDataAvailable')}</p>;
+    return <p className="mt-4 text-gray-400 dark:text-gray-500">{t('noDataAvailable')}</p>;
   }
 
   return (
     <div className="w-full md:col-span-4">
-      <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+      <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl dark:text-white`}>
         {t('revenueChart')}
       </h2>
-      <div className="rounded-xl bg-gray-50 p-4">
-        <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 md:gap-4">
+      <div className="rounded-xl bg-gray-50 dark:bg-gray-800 p-4">
+        <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white dark:bg-gray-700 p-4 md:gap-4">
           {/* y-axis */}
           <div
-            className="mb-6 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
+            className="mb-6 hidden flex-col justify-between text-sm text-gray-400 dark:text-gray-500 sm:flex"
             style={{ height: `${chartHeight}px` }}
           >
             {yAxisLabels.map((label) => (
@@ -42,21 +42,21 @@ export default async function RevenueChart() {
             <div key={month.month} className="flex flex-col items-center gap-2">
               {/* bars */}
               <div
-                className="w-full rounded-md bg-blue-300"
+                className="w-full rounded-md bg-blue-300 dark:bg-blue-500"
                 style={{
                   height: `${(chartHeight / topLabel) * month.revenue}px`,
                 }}
               ></div>
               {/* x-axis */}
-              <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">
+              <p className="-rotate-90 text-sm text-gray-400 dark:text-gray-500 sm:rotate-0">
                 {month.month}
               </p>
             </div>
           ))}
         </div>
         <div className="flex items-center pb-2 pt-6">
-          <CalendarIcon className="h-5 w-5 text-gray-500" />
-          <h3 className="ml-2 text-sm text-gray-500 ">{t('lastTwelveMonths')}</h3>
+          <CalendarIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+          <h3 className="ml-2 text-sm text-gray-500 dark:text-gray-400">{t('lastTwelveMonths')}</h3>
         </div>
       </div>
     </div>

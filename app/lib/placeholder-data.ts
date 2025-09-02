@@ -46,6 +46,67 @@ const customers = [
     email: 'balazs@orban.com',
     image_url: '/customers/balazs-orban.png',
   },
+  {
+    id: 'A1B2C3D4-E5F6-7890-1234-567890ABCDEF',
+    name: 'Sarah Johnson',
+    email: 'sarah@johnson.com',
+    image_url: '/customers/evil-rabbit.png',
+  },
+  {
+    id: 'B2C3D4E5-F6A7-8901-2345-678901BCDEFG',
+    name: 'David Chen',
+    email: 'david@chen.com',
+    image_url: '/customers/michael-novotny.png',
+  },
+  {
+    id: 'C3D4E5F6-A7B8-9012-3456-789012CDEFGH',
+    name: 'Emily Rodriguez',
+    email: 'emily@rodriguez.com',
+    image_url: '/customers/amy-burns.png',
+  },
+  {
+    id: 'D4E5F6A7-B8C9-0123-4567-890123DEFGHI',
+    name: 'James Wilson',
+    email: 'james@wilson.com',
+    image_url: '/customers/lee-robinson.png',
+  },
+  {
+    id: 'E5F6A7B8-C9D0-1234-5678-901234EFGHIJ',
+    name: 'Maria Garcia',
+    email: 'maria@garcia.com',
+    image_url: '/customers/delba-de-oliveira.png',
+  },
+  {
+    id: 'F6A7B8C9-D0E1-2345-6789-012345FGHIJK',
+    name: 'Robert Taylor',
+    email: 'robert@taylor.com',
+    image_url: '/customers/balazs-orban.png',
+  },
+  {
+    id: 'A7B8C9D0-E1F2-3456-7890-123456GHIJKL',
+    name: 'Lisa Anderson',
+    email: 'lisa@anderson.com',
+    image_url: '/customers/evil-rabbit.png',
+  },
+  {
+    id: 'B8C9D0E1-F2A3-4567-8901-234567HIJKLM',
+    name: 'Michael Brown',
+    email: 'michael@brown.com',
+    image_url: '/customers/michael-novotny.png',
+  },
+  {
+    id: 'C9D0E1F2-A3B4-5678-9012-345678IJKLMN',
+    name: 'Jennifer Davis',
+    email: 'jennifer@davis.com',
+    image_url: '/customers/amy-burns.png',
+  },
+  {
+    id: 'D0E1F2A3-B4C5-6789-0123-456789JKLMNO',
+    name: 'Christopher Miller',
+    email: 'christopher@miller.com',
+    image_url: '/customers/lee-robinson.png',
+  },
+
 ];
 
 const invoices = [

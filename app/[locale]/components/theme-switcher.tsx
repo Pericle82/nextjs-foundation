@@ -22,7 +22,10 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
     // Renderizza un placeholder durante l'hydration
     return (
       <Button
-        className={cn("cursor-pointer", className)}
+        className={cn(
+          "cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-lg text-gray-900 dark:text-gray-100",
+          className
+        )}
         size="icon"
         aria-label="Toggle theme"
         disabled
@@ -37,7 +40,10 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
   return (
     <Button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={cn("cursor-pointer", className)}
+      className={cn(
+        "cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100",
+        className
+      )}
       size="icon"
       aria-label="Toggle theme"
     >

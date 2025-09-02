@@ -30,7 +30,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased bg-white dark:bg-gray-900`} suppressHydrationWarning>
 
         <NextIntlClientProvider locale={locale}>
           <ThemeProvider>
