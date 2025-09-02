@@ -1,11 +1,6 @@
 import bcrypt from 'bcrypt';
-import postgres from 'postgres';
+import { sql } from '../lib/db';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
-
-// Initialize PostgreSQL client
-const sql = postgres(process.env.POSTGRES_URL!, { 
-  ssl: process.env.NODE_ENV === 'production' ? 'require' : false 
-});
 
 async function seedUsers() {
   await sql`

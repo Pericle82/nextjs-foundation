@@ -1,4 +1,4 @@
-import postgres from 'postgres';
+import { sql } from './db';
 import {
   CustomerField,
   CustomersTableType,
@@ -8,15 +8,6 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
-
-const sql = postgres(process.env.POSTGRES_URL!, {
-  ssl: process.env.NODE_ENV === 'production' ? 'require' : false,
-  onnotice: () => {}, // Suppress notices
-  connect_timeout: 10000, // 10 seconds
-  idle_timeout: 30000, // 30 seconds
-  max_lifetime: 60000 * 30, // 30 minutes
-  max: 10, // Max connections
-});
 
 // Test database connection
 export async function testDbConnection() {

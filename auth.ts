@@ -1,14 +1,10 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
-import postgres from 'postgres';
+import { sql } from './app/lib/db';
 import { z } from 'zod';
 import type { User } from '@/app/lib/definitions';
 import { authConfig } from './auth.config';
-
-const sql = postgres(process.env.POSTGRES_URL!, { 
-  ssl: process.env.NODE_ENV === 'production' ? 'require' : false 
-});
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
