@@ -34,11 +34,13 @@ export default async function LocaleLayout({
 
         <NextIntlClientProvider locale={locale}>
           <ThemeProvider>
-            {children}
             <ClientOnly>
-              <LangSwitcher className="absolute right-5 bottom-16 z-10" />
-              <ThemeSwitcher className="absolute right-5 bottom-5 z-10" />
+              <div className="fixed top-4 right-4 z-50 flex flex-row gap-2">
+                <LangSwitcher />
+                <ThemeSwitcher />
+              </div>
             </ClientOnly>
+            {children}
           </ThemeProvider>
         </NextIntlClientProvider>
 
