@@ -1,171 +1,134 @@
 # Next.js Foundation Dashboard
 
-A modern, full-stack dashboard application built with Next.js 15, featuring internationalization, authentication, and a complete invoice management system. This project demonstrates best practices for building production-ready applications with TypeScript, Tailwind CSS, and PostgreSQL.
+A modern, full-stack dashboard application built with Next.js 15, featuring complete dark mode support, internationalization, authentication, and invoice management. This project demonstrates production-ready patterns with TypeScript, Tailwind CSS, and PostgreSQL.
 
-## ✨ Features
+## ✨ Key Features
 
-### Core Functionality
-- **Invoice Management**: Create, edit, and manage invoices with status tracking
-- **Customer Management**: Comprehensive customer database with invoice history
-- **Revenue Analytics**: Visual revenue charts and financial summaries
-- **Search & Pagination**: Real-time search with paginated results
+### 🎨 **Complete Dark Mode Implementation**
+- **System-wide dark theme** with `next-themes` integration
+- **Comprehensive UI coverage**: Tables, forms, navigation, loading states
+- **Smart contrast optimization** for accessibility
+- **Floating theme switcher** positioned to avoid content overlap
 
-### Modern Architecture
-- **Next.js 15**: Latest features with App Router and Server Components
-- **TypeScript**: Full type safety throughout the application
-- **Internationalization**: Multi-language support (English & Italian)
-- **Authentication**: Secure NextAuth.js implementation with credentials
-- **Dark/Light Mode**: Built-in theme switching with `next-themes`
+### 🌍 **Internationalization & UX**
+- **Multi-language support** (English & Italian) with `next-intl`
+- **Language switcher** with enhanced backgrounds for visibility
+- **Optimized routing** with locale-based patterns
+- **Static rendering** configuration for performance
+
+### 💼 **Business Features**
+- **Invoice Management**: Create, edit, and track invoice statuses
+- **Customer Database**: Expanded customer data (16 customers) with search/pagination
+- **Revenue Analytics**: Visual charts and financial summaries
+- **Real-time Search**: Instant filtering across tables
+
+### 🔧 **Technical Excellence**
+- **Database Connection Pooling**: Singleton pattern prevents "too many clients" errors
+- **Type-safe Development**: Full TypeScript coverage with Zod validation
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Authentication**: Secure NextAuth.js implementation
 
-### Developer Experience
-- **Turbopack**: Lightning-fast development with `--turbopack`
-- **Type Definitions**: Comprehensive TypeScript interfaces
-- **Form Validation**: Zod schema validation
-- **Component Library**: Reusable UI components with Radix UI
-- **Icons**: Heroicons and Lucide React for consistent iconography
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ (recommended: latest LTS)
-- pnpm (package manager)
-- PostgreSQL database
+- Node.js 18+ and pnpm
+- PostgreSQL database (Docker recommended)
 
-### Installation
-
-1. Clone the repository:
+### Setup
 ```bash
+# Clone and install
 git clone <repository-url>
 cd nextjs-foundation
-```
-
-2. Install dependencies:
-```bash
 pnpm install
-```
 
-3. Set up environment variables:
-```bash
+# Environment setup
 cp .env.example .env.development
-```
+# Configure POSTGRES_URL and NEXTAUTH_SECRET
 
-Configure your `.env.development` file with:
-```env
-# Database
-POSTGRES_URL="postgresql://username:password@localhost:5432/database_name"
-
-# NextAuth
-NEXTAUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000"
-
-# Development
-NODE_ENV="development"
-```
-
-4. Initialize the database:
-```bash
-# Seed the database with sample data
+# Database setup
+docker run --name nextjs-postgres-dev -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:15-alpine
 curl -X POST http://localhost:3000/seed
-```
 
-5. Start the development server:
-```bash
+# Start development
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+**Demo Login**: `user@nextmail.com` / `123456`
 
-## 📱 Available Scripts
+## 🏗️ Architecture
 
-- `pnpm dev` - Start development server with Turbopack
-- `pnpm build` - Build the application for production
-- `pnpm start` - Start the production server
-
-## 🏗️ Project Structure
-
+### Project Structure
 ```
-├── app/
-│   ├── [locale]/                 # Internationalized routes
-│   │   ├── components/           # Locale-specific components
-│   │   ├── dashboard/            # Dashboard pages
-│   │   │   ├── (overview)/       # Dashboard overview
-│   │   │   ├── customers/        # Customer management
-│   │   │   └── invoices/         # Invoice management
-│   │   ├── login/                # Authentication page
-│   │   └── page.tsx              # Home page
-│   ├── lib/                      # Utility functions & data
-│   │   ├── actions.ts            # Server actions
-│   │   ├── data.ts               # Data fetching functions
-│   │   └── definitions.ts        # TypeScript definitions
-│   ├── ui/                       # UI components
-│   │   ├── dashboard/            # Dashboard-specific components
-│   │   ├── invoices/             # Invoice components
-│   │   └── customers/            # Customer components
-│   ├── query/route.ts            # API routes
-│   └── seed/route.ts             # Database seeding
-├── auth.ts                       # NextAuth configuration
-├── auth.config.ts                # Auth configuration
-├── middleware.ts                 # Next.js middleware
-├── i18n/                         # Internationalization setup
-├── dictionaries/                 # Translation files
-│   ├── en.json                   # English translations
-│   └── it.json                   # Italian translations
-└── public/                       # Static assets
+app/
+├── [locale]/                    # Internationalized routes
+│   ├── components/              # Theme & language switchers
+│   ├── dashboard/               # Protected dashboard pages
+│   └── login/                   # Authentication
+├── lib/
+│   ├── db.ts                   # ✨ Connection pool singleton
+│   ├── actions.ts              # Server actions
+│   └── data.ts                 # Data fetching
+├── ui/                         # ✨ Dark mode UI components
+│   ├── dashboard/              # Cards, charts, navigation
+│   ├── invoices/               # Forms, tables, pagination
+│   └── customers/              # Customer management
+└── seed/                       # Database seeding
 ```
 
-## 🔒 Authentication
+### Dark Mode Implementation
+- **Comprehensive coverage**: Every UI component supports dark/light themes
+- **Smart defaults**: Proper contrast ratios and accessibility
+- **Loading states**: Dark-themed skeletons with shimmer effects
+- **Interactive elements**: Hover states and focus indicators
 
-The application uses NextAuth.js with credentials provider:
+### Database Architecture
+- **Connection Pooling**: Prevents connection exhaustion with singleton pattern
+- **Type Safety**: PostgreSQL with typed queries and schema validation
+- **Seeding**: Automated setup with 16 customers and sample invoices
+- **Performance**: Optimized queries with proper indexing
 
-- **Login endpoint**: `/[locale]/login`
-- **Protected routes**: All dashboard routes require authentication
-- **Middleware protection**: Routes are protected via middleware
+## � UI Components
 
-### Demo Credentials
-```
-Email: user@nextmail.com
-Password: 123456
-```
+### Core Components
+- **Tables**: Responsive design with dark mode support
+- **Forms**: Validation with error states and accessibility
+- **Navigation**: Sidebar with proper dark mode backgrounds
+- **Loading States**: Skeleton components with shimmer animations
+- **Switchers**: Theme and language controls with enhanced visibility
 
-## 🌍 Internationalization
+### Design System
+- **Tailwind CSS**: Utility-first with dark mode class strategy
+- **Consistent Patterns**: Reusable component library
+- **Accessibility**: ARIA-compliant with proper contrast ratios
+- **Icons**: Heroicons and Lucide React integration
 
-Multi-language support with `next-intl`:
+## 🔧 Technical Highlights
 
-- **Supported languages**: English (`en`), Italian (`it`)
-- **Default locale**: English
-- **URL structure**: `/en/dashboard`, `/it/dashboard`
-- **Translation files**: Located in `dictionaries/`
-
-## 🎨 UI Components
-
-Built with modern component patterns:
-
-- **Design System**: Custom components with Tailwind CSS
-- **Accessibility**: ARIA-compliant components
-- **Icons**: Heroicons for consistent iconography
-- **Forms**: Tailwind Forms plugin for beautiful form styling
-- **Animations**: Shimmer loading effects and smooth transitions
-
-## 📊 Database Schema
-
-The application manages three main entities:
-
+### Performance Optimizations
 ```typescript
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
+// Connection Pool Singleton (prevents "too many clients")
+const sql = postgres(url, {
+  max: process.env.NODE_ENV === 'production' ? 10 : 5,
+  idle_timeout: 20,
+  connect_timeout: 30
+});
+```
 
-type Customer = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-}
+### Dark Mode Implementation
+```typescript
+// System-wide theme support
+<html lang={locale} suppressHydrationWarning>
+  <body className="bg-white dark:bg-gray-900">
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  </body>
+</html>
+```
 
+### Type Safety
+```typescript
+// Comprehensive type definitions
 type Invoice = {
   id: string;
   customer_id: string;
@@ -175,73 +138,37 @@ type Invoice = {
 }
 ```
 
-## 🛠️ Technologies
+## � Technologies
 
-### Framework & Language
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **React 18** - UI library with latest features
+**Core**: Next.js 15, TypeScript, React 18  
+**Styling**: Tailwind CSS, next-themes, Radix UI  
+**Database**: PostgreSQL with connection pooling  
+**Auth**: NextAuth.js v5 with credentials  
+**i18n**: next-intl with static rendering  
+**Validation**: Zod schema validation  
+**Development**: Turbopack for fast builds
 
-### Styling & UI
-- **Tailwind CSS** - Utility-first CSS framework
-- **@tailwindcss/forms** - Beautiful form styling
-- **next-themes** - Theme switching support
-- **Radix UI** - Headless UI components
-- **Heroicons** - SVG icon library
-- **Lucide React** - Additional icons
+## � Database Schema
 
-### Authentication & Security
-- **NextAuth.js v5** - Authentication solution
-- **bcrypt** - Password hashing
-- **Zod** - Schema validation
-
-### Database & Data
-- **PostgreSQL** - Primary database
-- **postgres** - PostgreSQL client for Node.js
-
-### Internationalization
-- **next-intl** - Internationalization for Next.js
-
-### Development Tools
-- **Turbopack** - Fast bundler for development
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-
-## 🚀 Deployment
-
-### Production Build
-```bash
-pnpm build
-pnpm start
+```sql
+-- Users, Customers, Invoices with UUID primary keys
+-- Optimized for performance with proper indexes
+-- Seeded with 16 customers and sample data
 ```
 
-### Environment Variables
-Ensure these are set in production:
-- `POSTGRES_URL` - Production database URL
-- `NEXTAUTH_SECRET` - Secure secret for NextAuth
-- `NEXTAUTH_URL` - Production URL
+## 🌍 Internationalization
 
-### Database Setup
-Consider using [Neon](https://neon.com) for PostgreSQL hosting or [Drizzle ORM](https://orm.drizzle.team) for enhanced database management.
+- **Languages**: English (default), Italian
+- **URL Pattern**: `/en/dashboard`, `/it/dashboard`
+- **Static Rendering**: Optimized with `generateStaticParams`
+- **Translation Management**: JSON-based dictionaries
 
-## 🤝 Contributing
+## � Security & Auth
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is based on the Next.js Learn Course by Vercel and is intended for educational purposes.
-
-## 🙏 Acknowledgments
-
-- [Next.js Learn Course](https://nextjs.org/learn/) by Vercel
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [Heroicons](https://heroicons.com/) for the beautiful icon set
-- The Next.js and React communities for continuous innovation
+- **Protected Routes**: Middleware-based route protection
+- **Password Hashing**: bcrypt for secure authentication
+- **Type Validation**: Zod schemas for all inputs
+- **Environment Security**: Proper secret management
 
 ---
 
